@@ -6,10 +6,11 @@ public static void main(String[]){
     int[] something = {1, 2, 3, 4};
     System.out.println(something);
 }
-
+```
 
 and now here is an actual image link
-[real image](https://thisisanimage.html)
+[real link](https://thisisanimage.html)
+[[waiejfoapeoijfalsdkfj](asdfasfweijfoa)](wow.com.htmlasdfdfewef)
 
 yo idk what I'm doing (and this is just some more random parenthsis for stuff)
 and this has no real point in things.
