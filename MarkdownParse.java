@@ -11,18 +11,23 @@ public class MarkdownParse {
         // the next )
         int currentIndex = 0;
         System.out.println(currentIndex);
+        boolean isImage = false;
         while(currentIndex < markdown.length()) {
+            if(markdown.indexOf("!", currentIndex)!=-1) isImage = true;
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
             currentIndex = closeParen + 1;
+            if(closeParen==-1) break;
             if(markdown.indexOf("[", currentIndex)==-1){
                 currentIndex = markdown.length();
             }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            
+            if(!isImage){
+             toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
             System.out.println(currentIndex);
+            isImage = false; 
         }
         return toReturn;
     }
