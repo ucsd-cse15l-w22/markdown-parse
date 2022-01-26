@@ -17,6 +17,7 @@ public class MarkdownParse {
             if(markdown.indexOf("![", currentIndex)!=-1) isImage = true;
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            if(nextCloseBracket==-1)break;
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
             currentIndex = closeParen + 1;
