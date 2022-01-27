@@ -1,4 +1,4 @@
 # Title
 
-[a link!](https://something.com)
+[a link![1]](https://something.com)
 [another link!](some-page.html)
