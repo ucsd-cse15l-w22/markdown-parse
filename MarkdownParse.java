@@ -10,10 +10,11 @@ public class MarkdownParse {
         // find the next [, then find the ](, then take up to the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
+            int nextExclamationOpenBracket = markdown.indexOf("![", currentIndex);
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracketAndOpenParen = markdown.indexOf("](", nextOpenBracket);
             int closeParen = markdown.indexOf(")", nextCloseBracketAndOpenParen);
-            if (currentIndex > closeParen) {
+            if (currentIndex > closeParen || nextExclamationOpenBracket == nextOpenBracket-1) {
                 break;
             } else if (currentIndex < closeParen) {
                 currentIndex = closeParen + 1;
