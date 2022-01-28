@@ -6,10 +6,13 @@ import java.util.ArrayList;
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String[] markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        int currentIndex = 0;
+        int currentIndex;
         for (String line: markdown) {
             currentIndex = 0;
-            if (line.indexOf(")") == -1) {
+            if (line.indexOf("[") == -1) {
+                continue;
+            }
+            if (line.indexOf(")") == -1){
                 continue;
             }
             int nextOpenBracket = line.indexOf("[", currentIndex);
