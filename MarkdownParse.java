@@ -13,12 +13,14 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             if(nextOpenBracket == -1){
-                System.out.println("Invalid input");
                 throw new IllegalArgumentException("Invalid file");
             }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
+            if(closeParen == -1){
+                throw new IllegalArgumentException("Invalid file");
+            }
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
             //System.out.println(nextCloseBracket);
