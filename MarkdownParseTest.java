@@ -17,4 +17,21 @@ public class MarkdownParseTest {
 
         assertEquals(List.of("https://something.com", "some-page.html"), MarkdownParse.getLinks(contents));
     }
+
+    @Test
+    public void getLinksTest2() throws IOException{
+        Path fileName = Path.of("/Users/oshima-alex/Documents/GitHub/markdown-parse/bug-maker-1.md");
+        String contents = Files.readString(fileName);
+
+        assertEquals(List.of("www.link.com/dsajlfldkjsajklf"), MarkdownParse.getLinks(contents));
+    }
+/*
+    @Test
+    public void getLinksTest3() throws IOException{
+        Path fileName = Path.of("/Users/oshima-alex/Documents/GitHub/markdown-parse/bug-maker-2.md");
+        String contents = Files.readString(fileName);
+
+        assertEquals(List.of("www.link.com/)dsajlfldkjsajklf"), MarkdownParse.getLinks(contents));
+    }
+    */
 }
