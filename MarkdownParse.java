@@ -20,7 +20,7 @@ public class MarkdownParse {
 
             int openParen = line.indexOf("(", nextCloseBracket);
             int closeParen = line.indexOf(")", openParen);
-            
+            //testchanges
             toReturn.add(line.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
