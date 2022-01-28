@@ -18,7 +18,9 @@ public class MarkdownParse {
 
             if (nextOpenBracket != 0) {
                 if (markdown.charAt(nextOpenBracket-1) != '!') {
-                    toReturn.add(markdown.substring(openParen + 1, closeParen));      
+                    if (! markdown.substring(openParen + 1, closeParen).contains(" ")) {
+                        toReturn.add(markdown.substring(openParen + 1, closeParen));    
+                    }
                 }
             }
             else {
