@@ -12,8 +12,12 @@ public class MarkdownParse {
             if (line.indexOf(")") == -1) {
                 continue;
             }
-            int openParen = line.indexOf("(", currentIndex);
+            int nextOpenBracket = line.indexOf("[", currentIndex);
+            int nextCloseBracket = line.indexOf("]", nextOpenBracket);
+
+            int openParen = line.indexOf("(", nextCloseBracket);
             int closeParen = line.indexOf(")", openParen);
+            
             toReturn.add(line.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
@@ -24,5 +28,6 @@ public class MarkdownParse {
         String[] regLines = regFile.split("\n");
         ArrayList<String> links = getLinks(regLines);
         System.out.println(links);
+        
     }
 }
