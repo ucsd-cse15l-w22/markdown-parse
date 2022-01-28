@@ -17,10 +17,13 @@ public class MarkdownParse {
             {
                 break;
             }
-            if(markdown.charAt(nextOpenBracket-1) == '!')
+            if(nextOpenBracket != 0)
             {
-                currentIndex = nextOpenBracket+1;
-                continue;
+                if(markdown.charAt(nextOpenBracket-1) == '!')
+                {
+                    currentIndex = nextOpenBracket+1;
+                    continue;
+                }
             }
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
