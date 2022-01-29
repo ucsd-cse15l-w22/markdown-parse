@@ -9,18 +9,11 @@ public class MarkdownParse {
         int currentIndex;
         for (String line: markdown) {
             currentIndex = 0;
-            if (line.indexOf("[") == -1) {
-                continue;
-            }
             if (line.indexOf(")") == -1){
                 continue;
             }
-            int nextOpenBracket = line.indexOf("[", currentIndex);
-            int nextCloseBracket = line.indexOf("]", nextOpenBracket);
-
-            int openParen = line.indexOf("(", nextCloseBracket);
+            int openParen = line.indexOf("(", currentIndex);
             int closeParen = line.indexOf(")", openParen);
-            //testchanges
             toReturn.add(line.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
