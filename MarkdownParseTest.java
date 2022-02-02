@@ -24,7 +24,7 @@ public class MarkdownParseTest {
     @Test
     public void failTest() throws IOException{
 	List<String> cool = List.of("https://something.com", "some-page.html");
-        List<String> links = List.of("https://something.comfff", "some-page.html");
+        List<String> links = List.of("https://something.com", "some-page.html");
         assertEquals(cool, links);
     }
     @Test
