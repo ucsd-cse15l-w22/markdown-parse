@@ -16,6 +16,8 @@ public class MarkdownParse {
             isImage = false; 
             if(markdown.indexOf("![", currentIndex)!=-1) isImage = true;
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
+	    int isTilda = markdown.indexOf("~", nextOpenBracket);
+	    if(isTilda>=0)break;
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             //break for joetest7.md
             if(nextCloseBracket==-1)break;
