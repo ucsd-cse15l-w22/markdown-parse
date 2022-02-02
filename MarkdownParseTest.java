@@ -23,8 +23,10 @@ public class MarkdownParseTest {
     //purposefully failing test
     @Test
     public void failTest() throws IOException{
-	List<String> cool = List.of("https://something.com", "some-page.html");
-        List<String> links = List.of("https://something.com", "some-page.html");
+	List<String> cool = List.of();
+        Path fileName = Path.of("breaktest.md");
+	    String contents = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
         assertEquals(cool, links);
     }
     @Test
