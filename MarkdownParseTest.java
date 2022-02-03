@@ -13,16 +13,17 @@ public class MarkdownParseTest {
     @Test
     public void addition() {
         // Asserting that the left of the comma is equal to the right
-        assertEquals(2, 1 + 1);
+        assertEquals(3, 1 + 1);
     }
-
+  /*
     @Test
     public void links() throws IOException {
 
-		Path fileName = Path.of("test-file.md");
+		Path fileName = Path.of("C:\\Users\\heter\\Documents\\GitHub\\markdown-parse, test-file.md");
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        List<String> output = List.of("https://something.com", "some-page.html");
+        List<String> output = List.of("[]");
         assertEquals(output, links);
     }
+    */
 }
