@@ -7,29 +7,47 @@ import java.util.ArrayList;
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        
+        // find the next [, then find the ], then find the (, then take up to
+        // the next )
         int currentIndex = 0;
-        while(currentIndex < markdown.length()) {
-            
+        while(markdown.indexOf("[", currentIndex) != -1) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            if(nextOpenBracket == -1){
-                break;
+            if(nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!'){
+                int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+                if(nextCloseBracket == -1){
+                    nextCloseBracket = nextOpenBracket;
+                }
+                int openParen = markdown.indexOf("(", nextCloseBracket);
+                if(openParen == -1){
+                    openParen = nextOpenBracket;
+                }
+                int closeParen = markdown.indexOf(")", openParen);
+                if(closeParen == -1){
+                    closeParen = openParen;
+                }
+                currentIndex = closeParen + 1;
             }
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            if(nextCloseBracket == -1){
-                break;
+            else{
+                int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+                if(nextCloseBracket == -1){
+                    nextCloseBracket = nextOpenBracket;
+                }
+                int openParen = markdown.indexOf("(", nextCloseBracket);
+                if(openParen == -1){
+                    openParen = nextOpenBracket;
+                }
+                int closeParen = markdown.indexOf(")", openParen);
+                if(closeParen == -1){
+                    closeParen = openParen;
+                }
+                if(nextCloseBracket != openParen - 1){
+                    currentIndex = closeParen + 1;
+                }
+                else{
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                    currentIndex = closeParen + 1;
+                }
             }
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            if(openParen == -1){
-                break;
-           }
-            int closeParen = markdown.indexOf(")", openParen);
-            if(closeParen == -1){
-                break;
-            }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1;
-          
         }
         return toReturn;
     }
