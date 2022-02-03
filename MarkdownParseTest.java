@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.beans.Transient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,7 +49,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testGetlink3() {
-        List<String> expected = List.of("https://ucsd-cse15l-w22.github.io/");
+        List<String> expected = List.of();
         try {
             assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("test-file-4.md"))));
         }
@@ -57,4 +58,5 @@ public class MarkdownParseTest {
         }            
 
     }
+
 }
