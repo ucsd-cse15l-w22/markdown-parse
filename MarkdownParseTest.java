@@ -29,7 +29,7 @@ public class MarkdownParseTest {
         assertEquals("Test for test-file2 parse",expectedList2,  MarkdownParse.getLinks(contents));
         System.out.println(MarkdownParse.getLinks(contents).toString());
     }
-    */
+    
     @Test
     public void parseTest3() throws IOException {
         List<String> expectedList3 = List.of();
@@ -39,4 +39,5 @@ public class MarkdownParseTest {
         assertEquals("Test for test-file3 parse",expectedList3.size(),  MarkdownParse.getLinks(contents).size());
         System.out.println(MarkdownParse.getLinks(contents).toString());
     }
+    */
 }
