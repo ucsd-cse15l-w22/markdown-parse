@@ -13,7 +13,7 @@ public class MarkdownParseTest {
     @Test
     public void addition() {
         // Asserting that the left of the comma is equal to the right
-        assertEquals(3, 1 + 1);
+        assertEquals(2, 1 + 1);
     }
   /*
     @Test
