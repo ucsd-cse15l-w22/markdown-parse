@@ -34,5 +34,29 @@ public class MarkdownParseTest {
         assertEquals(List.of(), MarkdownParse.getLinks(contents));
     }
 
+    @Test
+    public void getLinksTest4() throws IOException{
+        Path fileName = Path.of("/Users/oshima-alex/Documents/GitHub/markdown-parse/test-file4.md");
+        String contents = Files.readString(fileName);
+
+        assertEquals(List.of(), MarkdownParse.getLinks(contents));
+    }
+
+    @Test
+    public void getLinksTest7() throws IOException{
+        Path fileName = Path.of("/Users/oshima-alex/Documents/GitHub/markdown-parse/test-file7.md");
+        String contents = Files.readString(fileName);
+
+        assertEquals(List.of(), MarkdownParse.getLinks(contents));
+    }
+
+    @Test
+    public void getLinksTest8() throws IOException{
+        Path fileName = Path.of("/Users/oshima-alex/Documents/GitHub/markdown-parse/test-file8.md");
+        String contents = Files.readString(fileName);
+
+        assertEquals(List.of("a link on the first line"), MarkdownParse.getLinks(contents));
+    }
+
 
 }
