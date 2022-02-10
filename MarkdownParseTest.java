@@ -17,11 +17,11 @@ public class MarkdownParseTest {
         assertEquals(10, 5*2);
     }
     
-    @Test
-    public void testLink() throws IOException {
-        String regFile = Files.readString(Path.of("./test-file.md"));
-        String[] regLines = regFile.split("\n");
-        assertEquals(List.of("https://something.com","some-page.html"), MarkdownParse.getLinks(regLines));
-    }
+    // @Test
+    // public void testLink() throws IOException {
+    //     String regFile = Files.readString(Path.of("./test-file.md"));
+    //     String[] regLines = regFile.split("\n");
+    //     assertEquals(List.of("https://something.com","some-page.html"), MarkdownParse.getLinks(regLines));
+    // }
     
 }
