@@ -10,6 +10,7 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
+    /*
     @Test
     public void parseTest1() throws IOException {
         List<String> expectedList = List.of("https://something.com", "some-page.html");
@@ -19,6 +20,7 @@ public class MarkdownParseTest {
         assertEquals("Test for test-file1 parse",expectedList,  MarkdownParse.getLinks(contents));
         //System.out.println(MarkdownParse.getLinks(contents).toString());
     }
+    */
     
     @Test
     public void parseTest2() throws IOException {
