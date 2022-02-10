@@ -1,3 +1,3 @@
 [emptyFile]()
 
-[main](google)
+[](google)
