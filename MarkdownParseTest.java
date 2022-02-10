@@ -22,29 +22,18 @@ public class MarkdownParseTest {
     
     @Test
     public void parseTest2() throws IOException {
+        List<String> expectedList = List.of();
         Path fileName = Path.of("test-file2.md");
 	    String contents = Files.readString(fileName);
-
-        boolean checkFail = false;
-
-        try{
-            MarkdownParse.getLinks(contents);
-        }
-        catch(IllegalArgumentException e){
-            checkFail = true;
-        }
-
-        assertTrue("Test for test-file2 failure", checkFail);
+        assertEquals("Test for no test-file2 parse",expectedList,  MarkdownParse.getLinks(contents));
     }
     
     @Test
     public void parseTest3() throws IOException {
-        List<String> expectedList3 = List.of("");
+        List<String> expectedList = List.of();
         Path fileName = Path.of("test-file3.md");
 	    String contents = Files.readString(fileName);
-
-        assertEquals("Test for test-file3 parse",expectedList3.size(),  MarkdownParse.getLinks(contents).size());
-        System.out.println(MarkdownParse.getLinks(contents).toString());
+        assertEquals("Test for no test-file2 parse",expectedList,  MarkdownParse.getLinks(contents));
     }
     
 }
