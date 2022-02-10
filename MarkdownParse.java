@@ -34,10 +34,11 @@ public class MarkdownParse {
 
             //Check if website text is valid
             //Checking goodFormat avoids potential IndexOutOfBoundsException
-            if(goodFormat){
+            
+            if(goodFormat && validWebsiteName){
                 String webName =  markdown.substring(nextOpenBracket+1, 
                     nextCloseBracket);
-                if(webName.contains("") || webName.contains(" ")){
+                if(webName.length()==0 || webName.contains(" ")){
                     validWebsiteName = false;
                 }
             }
@@ -57,7 +58,7 @@ public class MarkdownParse {
             }
 
             //If valid format and website name, add link; increment for next iteration
-            if(goodFormat && validWebsiteName){
+            if(goodFormat){
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
             }
             currentIndex = closeParen + 1;
