@@ -1,25 +1,36 @@
 // File reading code from https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MarkdownParse {
 
-    // Loop with a stack until finding the corresponding closeParen
     static int findCloseParen(String markdown, int openParen) {
-        int closeParen = openParen + 1;
-        int openParenCount = 1;
-        while (openParenCount > 0 && closeParen < markdown.length()) {
-            if (markdown.charAt(closeParen) == '(') {
-                openParenCount++;
-            } else if (markdown.charAt(closeParen) == ')') {
-                openParenCount--;
+        return markdown.indexOf(")", openParen);
+    }
+    public static Map<String, List<String>> getLinks(File directory) throws IOException {
+        Map<String, List<String>> result = new HashMap<>();
+        if(directory.isDirectory()) {
+            for(File f: directory.listFiles()) {
+                result.putAll(getLinks(f));
             }
-            closeParen++;
+            return result;
         }
-        if(openParenCount == 0) { return closeParen - 1; }
-        else { return -1; }
+        else {
+            Path p = directory.toPath();
+            int lastDot = p.toString().lastIndexOf(".");
+            if(lastDot == -1 || !p.toString().substring(lastDot).equals(".md")) {
+                return null;
+            }
+            ArrayList<String> links = getLinks(Files.readString(p));
+            result.put(directory.getPath(), links);
+            return result;
+        }
     }
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
@@ -28,7 +39,13 @@ public class MarkdownParse {
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            // System.out.format("%d\t%d\t%s\n", currentIndex, nextOpenBracket, toReturn);
+            int nextCodeBlock = markdown.indexOf(System.lineSeparator() + "```");
+            if(nextCodeBlock < nextOpenBracket) {
+                int endOfCodeBlock = markdown.indexOf(System.lineSeparator() + "```");
+                currentIndex = endOfCodeBlock + 1;
+                continue;
+            }
+            System.out.format("%d\t%d\t%s\n", currentIndex, nextOpenBracket, toReturn);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
 
@@ -53,9 +70,9 @@ public class MarkdownParse {
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
-		Path fileName = Path.of(args[0]);
-	    String contents = Files.readString(fileName);
-        ArrayList<String> links = getLinks(contents);
+		//Path fileName = Path.of(args[0]);
+	    //String contents = Files.readString(fileName);
+        Map<String, List<String>> links = getLinks(new File(args[0]));
         System.out.println(links);
     }
 }
