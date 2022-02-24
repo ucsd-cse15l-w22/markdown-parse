@@ -56,9 +56,19 @@ public class MarkdownParseTest {
         catch (IOException e) {
             System.out.println(e.getMessage());
         }            
-
+    
     }
-
+    @Test
+    public void testGetlink4() {
+        List<String> expected = List.of();
+        try {
+            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("test-file-5.md"))));
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }            
+    
+    }
 
 
 }
