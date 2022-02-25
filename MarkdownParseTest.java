@@ -8,20 +8,17 @@ import java.util.ArrayList;
 
 public class MarkdownParseTest {
     @Test
-    public void addition() {
-        assertEquals(2, 1 + 1);
+    public void testLink() throws IOException {
+        String regFile = Files.readString(Path.of("./test-file.md"));
+        String[] regLines = regFile.split("\n");
+        assertEquals(List.of("https://something.com","some-page.html"), MarkdownParse.getLinks(regLines));
     }
 
     @Test
-    public void multiplication() {
-        assertEquals(10, 5*2);
+    public void testSnippet1() throws IOException {
+        String regFile = Files.readString(Path.of("./snippet-1.md"));
+        String[] regLines = regFile.split("\n");
+        assertEquals(List.of("url.com", "`google.com", "google.com", "ucsd.edu"), MarkdownParse.getLinks(regLines));
     }
-    
-    // @Test
-    // public void testLink() throws IOException {
-    //     String regFile = Files.readString(Path.of("./test-file.md"));
-    //     String[] regLines = regFile.split("\n");
-    //     assertEquals(List.of("https://something.com","some-page.html"), MarkdownParse.getLinks(regLines));
-    // }
     
 }
