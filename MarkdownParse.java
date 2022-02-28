@@ -11,7 +11,23 @@ import java.util.Map;
 public class MarkdownParse {
 
     static int findCloseParen(String markdown, int openParen) {
-        return markdown.indexOf(")", openParen);
+        int closeParen = openParen + 1;
+        int openParenCount = 1;
+        while (openParenCount > 0 && closeParen < markdown.length()) {
+            if (markdown.charAt(closeParen) == '(') {
+                openParenCount++;
+            } else if (markdown.charAt(closeParen) == ')') {
+                openParenCount--;
+            }
+            closeParen++;
+        }
+        if(openParenCount == 0) {
+          return closeParen - 1;
+        }
+        else {
+          return -1;
+        }
+
     }
     public static Map<String, List<String>> getLinks(File directory) throws IOException {
         Map<String, List<String>> result = new HashMap<>();
