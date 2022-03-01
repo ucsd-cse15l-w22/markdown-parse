@@ -29,22 +29,22 @@ public class MarkdownParse {
         }
 
     }
-    public static Map<String, List<String>> getLinks(File directory) throws IOException {
+    public static Map<String, List<String>> getLinks(File dirOrFile) throws IOException {
         Map<String, List<String>> result = new HashMap<>();
-        if(directory.isDirectory()) {
-            for(File f: directory.listFiles()) {
+        if(dirOrFile.isDirectory()) {
+            for(File f: dirOrFile.listFiles()) {
                 result.putAll(getLinks(f));
             }
             return result;
         }
         else {
-            Path p = directory.toPath();
+            Path p = dirOrFile.toPath();
             int lastDot = p.toString().lastIndexOf(".");
             if(lastDot == -1 || !p.toString().substring(lastDot).equals(".md")) {
                 return result;
             }
             ArrayList<String> links = getLinks(Files.readString(p));
-            result.put(directory.getPath(), links);
+            result.put(dirOrFile.getPath(), links);
             return result;
         }
     }
